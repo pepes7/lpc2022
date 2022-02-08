@@ -2,22 +2,23 @@
 import turtle
 
 tess = turtle.Turtle()
-
-speed('fastest')
+screen = turtle.Screen()
+tess.speed('fastest')
 
 # turning the turtle to face upwards
-rt(-90)
+tess.rt(-90)
 
-# the acute angle between
+# the acute ANGLE between
 # the base and branch of the Y
-angle = 30
+ANGLE = 30
 
 # function to plot a Y
 
-def draw_fractal_tree(sz, level):
-    """ requires that the level greater than 0"""
+
+def draw_fractal_tree(base, level):
+    """ Requires that the level greater than 0"""
     if level > 0:
-        tess.colormode(255)
+        screen.colormode(255)
 
         # splitting the rgb range for green
         # into equal intervals for each level
@@ -26,26 +27,26 @@ def draw_fractal_tree(sz, level):
         tess.pencolor(0, 255//level, 0)
 
         # drawing the base
-        fd(sz)
+        tess.fd(base)
 
-        rt(angle)
+        tess.rt(ANGLE)
 
         # recursive call for
         # the right subtree
-        draw_fractal_tree(0.8 * sz, level-1)
+        draw_fractal_tree(0.8 * base, level-1)
 
-        pencolor(0, 255//level, 0)
+        tess.pencolor(0, 255//level, 0)
 
-        lt(2 * angle)
+        tess.lt(2 * ANGLE)
 
         # recursive call for
         # the left subtree
-        draw_fractal_tree(0.8 * sz, level-1)
+        draw_fractal_tree(0.8 * base, level-1)
 
-        pencolor(0, 255//level, 0)
+        tess.pencolor(0, 255//level, 0)
 
-        rt(angle)
-        fd(-sz)
+        tess.rt(ANGLE)
+        tess.fd(-base)
 
 
 # tree of size 80 and level 7
